@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamepad Detection</title>
+</head>
+
+<body>
+  <div id="gamepad-info"></div>
+
+  <script>
+    window.addEventListener("gamepadconnected", function (e) {
+      var gamepad = e.gamepad;
+      console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+        gamepad.index, gamepad.id,
+        gamepad.buttons.length, gamepad.axes.length);
+      updateGamepadStatus(gamepad);
+    });
+
+    window.addEventListener("gamepaddisconnected", function (e) {
+      console.log("Gamepad disconnected from index %d: %s",
+        e.gamepad.index, e.gamepad.id);
+      document.getElementById("gamepad-info").innerHTML = "Gamepad disconnected";
+    });
+
+    function updateGamepadStatus(gamepad) {
+      var gamepadInfo = document.getElementById("gamepad-info");
+      gamepadInfo.innerHTML = "<strong>Gamepad:</strong> " + gamepad.id + "<br>";
+
+      var buttonsInfo = "<strong>Buttons:</strong><br>";
+      gamepad.buttons.forEach(function (button, index) {
+        buttonsInfo += "Button " + index + ": " + (button) + "<br>";
+      });
+      buttonsInfo += "<br>";
+      gamepadInfo.innerHTML += buttonsInfo;
+
+      var axesInfo = "<strong>Axes:</strong><br>";
+      gamepad.axes.forEach(function (axis, index) {
+        axesInfo += "Axis " + index + ": " + axis + "<br>";
+      });
+      axesInfo += "<br>";
+      gamepadInfo.innerHTML += axesInfo;
+
+      requestAnimationFrame(function () {
+        updateGamepadStatus(gamepad);
+      });
+
+      
+    }
+
+    // Check for gamepad support
+    if (navigator.getGamepads) {
+      console.log("Gamepad API is supported");
+    } else {
+      console.log("Gamepad API is not supported");
+    }
+  </script>
+</body>
+
+</html>
