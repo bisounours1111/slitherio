@@ -51,7 +51,7 @@ def handle_eat_food(data):
 
     for i in range(data['quantity']):
         if data['index'] == -1:
-            rooms[data['roomName']]['food'].append({
+            rooms[data['roomName']]['food'].append({ 
             'x': random.randint(0, 600/20),
             'y': random.randint(0, 600/20)
         })
