@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slither.io Clone</title>
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+  <h1>Scoreboard</h1>
+  <table>
+    <tr>
+      <th>Rank</th>
+      <th>Username</th>
+      <th>Score</th>
+    </tr>
+    {% for i in range(0, len(scores)) %}
+    <tr>
+      <td>{{ i + 1 }}</td>
+      <td>{{ scores[i][0] }}</td>
+      <td>{{ scores[i][1] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <a href="/">Back to game</a>
+  <a href="/logout">Logout</a>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Créer un compte</title>
+</head>
+
+<body>
+    <div class="login-card">
+        <div class="apple"></div>
+        <div class="snake"></div>
+        <div class="snake"></div>
+        <div class="snake"></div>
+        <div class="snake"></div>
+        <div class="snake"></div>
+
+        <h2>Inscription</h2>
+        <form method="post" action="/signup">
+            <div class="input-group">
+                <label for="username">Pseudonyme : </label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            {% if request.args.get('ErrorUsername') == 'True' %}
+            <div class="alert">
+                <label style="color: red;" id="low_password"> Le pseudonyme existe déjà </label>
+            </div>
+            {% endif %}
+            <div class="input-group">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+                {% if request.args.get('PasswordNotSecure') == 'True' %}
+                <div class="alert">
+                    <label style="color: red;" id="low_password"> Le mot de passe doit contenir: <br> 8 lettres, 1
+                        character
+                        special, 1
+                        Majuscule, 1 Minuscule</label>
+                </div>
+                {% endif %}
+                <label for="password">Confirmer le mot de passe</label>
+                <input type="password" id="password" name="confirmed_password" required>
+                {% if request.args.get('ErrorPassword') == 'True' %}
+                <div class="alert">
+                    <label style="color: red;" id="low_password"> Les mots de passe ne correspondenet pas </label>
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit">Inscription</button>
+        </form>
+        <p> Vous avez déjà un compte ?<a href="/login">Connectez vous</a></p>
+    </div>
+</body>
+
+</html>

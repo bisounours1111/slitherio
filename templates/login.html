@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Connexion</title>
+</head>
+
+<body>
+
+    <div class="login-card">
+        <div>
+            <div class="apple"></div>
+            <div class="snake"></div>
+            <div class="snake"></div>
+            <div class="snake"></div>
+            <div class="snake"></div>
+            <div class="snake"></div>
+            <div class="snake"></div>
+            <div class="snake"></div>
+            <div class="snake"></div>
+        </div>
+
+        <h2>Connexion</h2>
+        <form method="post" action="/login">
+            <div class="input-group">
+                <label for="username">Pseudonyme:</label>
+                <input type="text" id="username" name="username" required>
+
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            {% if request.args.get('ErrorLogin') == 'True' %}
+            <div class="alert">
+                <label style="color: red;" id="low_password"> Mauvais mot de passe ou pseudonyme </label>
+            </div>
+            {% endif %}
+            <button type="submit">Connexion</button>
+        </form>
+        <p>Vous n'avez pas de compte ? <a href="/signup">Inscrivez vous</a></p>
+
+    </div>
+    <script src="/static/script2.js"></script>
+</body>
+
+</html>
